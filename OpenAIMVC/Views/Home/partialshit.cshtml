@@ -1,0 +1,23 @@
+﻿@model IEnumerable<dynamic>
+
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            @foreach (var prop in Model.FirstOrDefault()?.GetType().GetProperties())
+            {
+                <th>@prop.Name</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @foreach (var prop in item.GetType().GetProperties())
+                {
+                    <td>@prop.GetValue(item)</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

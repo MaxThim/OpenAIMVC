@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div style="background-color: #edf2f7;">
+    <div style="display: flex; flex-direction: column; flex: 1 1 0%; @@media (min-width: 1024px) { padding-left: 16rem; }">
+        <main style="flex: 1 1 0%; ">
+            <div style="padding-left: 1rem; padding-right: 1rem; margin-left: auto; margin-right: auto; max-width: 80rem; @@media (min-width: 640px) { padding-left: 1.5rem; padding-right: 1.5rem; } @@media (min-width: 1024px) { padding-left: 2rem; padding-right: 2rem; ">
+                <div style="display: flex; flex-direction: column; height: 100vh;">
+                    <div style="flex: none; height: 4rem;">
+                        <h1 style="font-size: 1.5rem; line-height: 2rem; font-weight: 600;">Chat</h1>
+                    </div>
+                    <div style="flex: 1 1 auto; overflow-y: auto; border-radius: 0.75rem; border-width: 1px; background-color: white;">
+                        <partial name="ChatOutput" />
+                    </div>
+                    <div style="flex: none; height: 10rem; margin-top: 1rem;">
+                        <partial name="ChatInput" />
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

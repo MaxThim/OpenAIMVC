@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<FineTuneJob>
+
+@await Html.PartialAsync("~/Views/Home/partialshit.cshtml", Model[0].HyperParams)
+
+<div class="text-center">
+    <h class="display-6">Fine tuned models</h>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <tr class="table-primary">
+        <th>Fine-tuned Model</th>
+        <th>Created Time</th>
+        <th>Hyperparams</th>
+        <th>Status</th>
+        <th>Updated At</th>
+        <th>Result Files</th>
+        <th>Validation Files</th>
+        <th>Training Files</th>
+    </tr>
+
+    @foreach(var job in ViewBag.FineTuneJobs)
+    {
+        <tr>
+            <td>@job.Fine_tuned_model</td>
+            <td>@job.Created_at</td>
+            <td>@job.HyperParams</td>
+            <td>@job.Status</td>
+            <td>@job.Updated_at</td>
+            <td>@job.NumberResultFiles</td>
+            <td>@job.NumberValidationFiles</td>
+            <td>@job.NumberTrainingFiles</td>
+        </tr>
+    }
+
+
+</table>
