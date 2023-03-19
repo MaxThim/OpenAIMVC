@@ -1,0 +1,218 @@
+﻿
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dropdownButton = document.querySelector(
+            "button[aria-haspopup='listbox']"
+        );
+        const dropdownList = document.querySelector("#list");
+        const dropdownOptions = dropdownList.querySelectorAll(
+            "li[role='option']"
+        );
+        let activeOptionIndex = Array.from(dropdownOptions).findIndex(
+            (option) =>
+                option.id === dropdownList.getAttribute("aria-activedescendant")
+        );
+
+        dropdownButton.addEventListener("click", toggleDropdown);
+
+        dropdownOptions.forEach((option, index) => {
+            option.addEventListener("click", function () {
+                selectOption(index);
+            });
+        });
+
+        function toggleDropdown() {
+            if (dropdownList.getAttribute("aria-expanded") === "true") {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        }
+
+        function openDropdown() {
+            dropdownList.setAttribute("aria-expanded", "true");
+            dropdownButton.setAttribute("aria-expanded", "true");
+        }
+
+        function closeDropdown() {
+            dropdownList.setAttribute("aria-expanded", "false");
+            dropdownButton.setAttribute("aria-expanded", "false");
+        }
+
+        function selectOption(index) {
+            const selectedOption = dropdownOptions[index];
+            dropdownList.setAttribute("aria-activedescendant", selectedOption.id);
+            dropdownButton.querySelector(
+                "span"
+            ).textContent = selectedOption.querySelector("span").textContent;
+            activeOptionIndex = index;
+            closeDropdown();
+        }
+
+        document.addEventListener("click", function (event) {
+            if (
+                !event.target.closest("button[aria-haspopup='listbox']") &&
+                !event.target.closest("#list")
+            ) {
+                closeDropdown();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeDropdown();
+            }
+        });
+    });
+</script>
+
+
+<style>
+    body {
+        background-color: grey;
+    }
+
+    #label {
+        display: block;
+        color: #111827;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+        line-height: 1.5rem;
+    }
+
+    #button {
+        position: relative;
+        padding-top: 0.375rem;
+        padding-bottom: 0.375rem;
+        padding-left: 0.75rem;
+        padding-right: 2.5rem;
+        background-color: #ffffff;
+        color: #111827;
+        text-align: left;
+        width: 100%;
+        border-radius: 0.375rem;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        line-height: 1.5rem;
+        cursor: default;
+    }
+
+        #button span {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        #button svg {
+            color: #9ca3af;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+    #list {
+        overflow: auto;
+        position: absolute;
+        z-index: 10;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        margin-top: 0.25rem;
+        background-color: #ffffff;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        list-style: none;
+        width: 100%;
+        border-radius: 0.375rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+        #list li {
+            position: relative;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0rem;
+            padding-right: 2.25rem;
+            color: #111827;
+            cursor: default;
+            user-select: none;
+        }
+
+            #list li span {
+                display: block;
+                font-weight: 400;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+        #list[aria-expanded="false"] {
+            display: none;
+        }
+
+        #list li svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+</style>
+
+<div style="display: flex;
+     padding-left: 1.75rem;
+     padding-right: 1.75rem;
+     margin-top: 0.5rem;
+     margin-left: 2rem;
+     flex: 1 1 auto;
+     justify-content: center;">
+
+    <div style="width: 16rem;">
+
+        <label id="label">Assigned to</label>
+        <div style="position: relative; margin-top: 0.5rem;">
+            <button id="button"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-labelledby="listbox-label">
+                <span>Tom Cook</span>
+                <span style="
+                  display: flex;
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  right: 0;
+                  padding-right: 0.5rem;
+                  align-items: center;
+                  pointer-events: none;
+                ">
+                    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+                              clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </button>
+            <ul id="list"
+                tabindex="-1"
+                role="listbox"
+                aria-labelledby="listbox-label"
+                aria-activedescendant="listbox-option-3"
+                aria-expanded="false">
+
+                <li id="listbox-option-0" role="option">
+                    <span>Wade Cooper</span>
+                </li>
+
+                <li id="listbox-option-1" role="option">
+                    <span>John Smith</span>    
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+

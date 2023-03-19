@@ -42,7 +42,7 @@ namespace OpenAIMVC.Controllers
         
             ViewBag.FineTuneJobs = fineTuneJobs;
 
-            return View("Form");
+            return View("Dropdown");
         }
 
         public IActionResult Privacy()

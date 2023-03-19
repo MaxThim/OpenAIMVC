@@ -1,123 +1,237 @@
-﻿<div>
-    <label id="listbox-label" style="font-size: 0.875rem; line-height: 1.5rem; font-weight: 500; color: #374151;">Assigned to</label>
-    <div style="position: relative; margin-top: 0.5rem;">
-        <button type="button" style="position: relative; width: 100%; cursor: default; border-radius: 0.375rem; background-color: #fff; padding-top: 0.375rem; padding-bottom: 0.375rem; padding-left: 0.75rem; padding-right: 2.5rem; color: #374151; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 1px 0 rgba(0, 0, 0, 0.1); border: 1px solid #D1D5DB; outline: none; transition: background-color 150ms ease-in-out, border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
-            <span style="display: inline-flex; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                <span style="overflow: hidden; text-overflow: ellipsis;">Tom Cook</span>
-                <span style="margin-left: 0.5rem; overflow: hidden; text-overflow: ellipsis; color: #6B7280;">@@tomcook</span>
-            </span>
-            <span style="pointer-events: none; position: absolute; top: 50%; transform: translateY(-50%); right: 0.75rem; display: flex; align-items: center;">
-                <svg style="height: 1.25rem; width: 1.25rem; color: #9CA3AF;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
-                </svg>
-            </span>
-        </button>
+﻿<!--
+  This example requires updating your template:
 
+  ```
+  <html class="h-full bg-white">
+  <body class="h-full overflow-hidden">
+  ```
+-->
+<style>
+    html {
+        background-color: #ffffff; 
+        height: 100%; 
+    }
+
+    body {
+        overflow: hidden; 
+        height: 100%; 
+    }
+</style>
+
+<div style="display: flex; height: 100%;">
+    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+    <div style="position: relative; z-index: 40; @@media (min-width: 1024px) { display: none; }" role="dialog" aria-modal="true">
         <!--
-          Select popover, show/hide based on select state.
+          Off-canvas menu backdrop, show/hide based on off-canvas menu state.
 
-          Entering: ""
-            From: ""
-            To: ""
-          Leaving: "transition ease-in duration-100"
+          Entering: "transition-opacity ease-linear duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "transition-opacity ease-linear duration-300"
             From: "opacity-100"
             To: "opacity-0"
         -->
-        <ul style="position: absolute; z-index: 10; margin-top: 0.125rem; max-height: 3.75rem; width: 100%; overflow: auto; border-radius: 0.375rem; background-color: #fff; padding-top: 0.25rem; padding-bottom: 0.25rem; padding-left: 0.75rem; padding-right: 0.75rem; color: #374151; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 1px 0 rgba(0, 0, 0, 0.1); border: 1px solid #000; outline: none; transition: opacity 150ms ease-in-out; visibility: hidden; opacity: 0;" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+        <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #6B7280; --bg-opacity: 0.75;"></div>
+
+        <div style="display: flex; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 40;">
             <!--
-              Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+              Off-canvas menu, show/hide based on off-canvas menu state.
 
-              Highlighted: "bg-indigo-600 text-white", Not Highlighted: "text-gray-900"
+              Entering: "transition ease-in-out duration-300 transform"
+                From: "-translate-x-full"
+                To: "translate-x-0"
+              Leaving: "transition ease-in-out duration-300 transform"
+                From: "translate-x-0"
+                To: "-translate-x-full"
             -->
-            <li style="font-size: 0.875rem; line-height: 1.25rem; font-weight: 400; color: #374151; position: relative; cursor: default; user-select: none; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 2.25rem; transition: background-color 150ms ease-in-out;">
-                <div style="display: flex;">
-                    <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                    <span style="overflow: hidden; text-overflow: ellipsis;">Wade Cooper</span>
-                    <!-- Highlighted: "text-indigo-200", Not Highlighted: "text-gray-500" -->
-                    <span style="margin-left: 0.5rem; overflow: hidden; text-overflow: ellipsis; color: #6B7280;">@@wadecooper</span>
-                </div>
-
-                <div style="display: flex;">
-                    <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                    <span style="overflow: hidden; text-overflow: ellipsis;">Johnny</span>
-                    <!-- Highlighted: "text-indigo-200", Not Highlighted: "text-gray-500" -->
-                    <span style="margin-left: 0.5rem; overflow: hidden; text-overflow: ellipsis; color: #6B7280;">@@Johnnyyyyyy</span>
-                </div>
-
+            <div style="display: flex; position: relative; background-color: #ffffff; flex-direction: column; flex: 1 1 0%; width: 100%; max-width: 20rem;">
                 <!--
-                  Checkmark, only display for selected option.
+                  Close button, show/hide based on off-canvas menu state.
 
-                  Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                  Entering: "ease-in-out duration-300"
+                    From: "opacity-0"
+                    To: "opacity-100"
+                  Leaving: "ease-in-out duration-300"
+                    From: "opacity-100"
+                    To: "opacity-0"
                 -->
-                <span style="position: absolute; top: 50%; transform: translateY(-50%); right: 0.75rem; display: flex; align-items: center;">
-                    <svg style="height: 1.25rem; width: 1.25rem; color: #4F46E5;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                    </svg>
-                </span>
-            </li>
+                <div style="position: absolute; top: 0; right: 0; padding-top: 0.5rem; margin-right: -3rem;">
+                    <button type="button" style="display: flex; margin-left: 0.25rem; justify-content: center; align-items: center; width: 2.5rem; height: 2.5rem; border-radius: 9999px;">
+                        <svg style="color: #ffffff; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
 
-            <!-- More items... -->
-        </ul>
+                <div style="overflow-y: auto; padding-bottom: 1rem; padding-top: 1.25rem; flex: 1 1 0%; height: 0;">
+                    <div style="display: flex; padding-left: 1rem; padding-right: 1rem; flex-shrink: 0; align-items: center;">
+                        <img style="width: auto; height: 2rem;" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                    </div>
+                    <nav aria-label="Sidebar" style="margin-top: 1.25rem;">
+                        <div style="padding-left: 0.5rem; padding-right: 0.5rem; margin-top: 0.25rem;">
+                            <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; background-color: #F3F4F6; color: #111827; font-size: 1rem; line-height: 1.5rem; font-weight: 500; align-items: center; border-radius: 0.375rem;">
+                                <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
+                                <svg style="margin-right: 1rem; color: #6B7280; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                </svg>
+                                Dashboard
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 1rem; line-height: 1.5rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 1rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                                </svg>
+                                Calendar
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 1rem; line-height: 1.5rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 1rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                                </svg>
+                                Teams
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 1rem; line-height: 1.5rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 1rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Directory
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 1rem; line-height: 1.5rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 1rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" />
+                                </svg>
+                                Announcements
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 1rem; line-height: 1.5rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 1rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+                                </svg>
+                                Office Map
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                <div style="display: flex; padding: 1rem; flex-shrink: 0; border-top-width: 1px; border-color: #E5E7EB;">
+                    <a href="#" style="display: block; flex-shrink: 0;">
+                        <div style="display: flex; align-items: center;">
+                            <div>
+                                <img style="display: inline-block; width: 2.5rem; height: 2.5rem; border-radius: 9999px;" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="">
+                            </div>
+                            <div style="margin-left: 0.75rem; ">
+                                <p style="color: #374151; font-size: 1rem; line-height: 1.5rem; font-weight: 500;">Whitney Francis</p>
+                                <p style="color: #6B7280; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500;">View profile</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div style="flex-shrink: 0; width: 3.5rem;" aria-hidden="true">
+                <!-- Force sidebar to shrink to fit close icon -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Static sidebar for desktop -->
+    <div style="display: none; @@media (min-width: 1024px) { display: flex; flex-shrink: 0; }">
+        <div style="display: flex; flex-direction: column; width: 16rem;">
+            <!-- Sidebar component, swap this element with another sidebar if you like -->
+            <div style="display: flex; background-color: #F3F4F6; flex-direction: column; flex: 1 1 0%; min-height: 0; border-right-width: 1px; border-color: #E5E7EB;">
+                <div style="display: flex; overflow-y: auto; padding-bottom: 1rem; padding-top: 1.25rem; flex-direction: column; flex: 1 1 0%;">
+                    <div style="display: flex; padding-left: 1rem; padding-right: 1rem; flex-shrink: 0; align-items: center;">
+                        <img style="width: auto; height: 2rem;" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                    </div>
+                    <nav style="margin-top: 1.25rem; flex: 1 1 0%;" aria-label="Sidebar">
+                        <div style="padding-left: 0.5rem; padding-right: 0.5rem; margin-top: 0.25rem;">
+                            <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; background-color: #E5E7EB; color: #111827; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; align-items: center; border-radius: 0.375rem;">
+                                <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
+                                <svg style="margin-right: 0.75rem; color: #6B7280; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                </svg>
+                                Dashboard
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 0.75rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                                </svg>
+                                Calendar
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 0.75rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                                </svg>
+                                Teams
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 0.75rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Directory
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 0.75rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" />
+                                </svg>
+                                Announcements
+                            </a>
+
+                            <a href="#" style="display: flex; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; color: #4B5563; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; align-items: center; border-radius: 0.375rem; :hover { background-color: #F9FAFB; color: #111827; }">
+                                <svg style="margin-right: 0.75rem; color: #9CA3AF; width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+                                </svg>
+                                Office Map
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                <div style="display: flex; padding: 1rem; flex-shrink: 0; border-top-width: 1px; border-color: #E5E7EB;">
+                    <a href="#" style="display: block; flex-shrink: 0; width: 100%;">
+                        <div style="display: flex; align-items: center;">
+                            <div>
+                                <img style="display: inline-block; border-radius: 9999px;" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="">
+                            </div>
+                            <div style="margin-left: 0.75rem;">
+                                <p style="color: #374151; font-size: 0.875rem; line-height: 1.25rem; font-weight: 500;">Whitney Francis</p>
+                                <p style="color: #6B7280; font-size: 0.75rem; line-height: 1rem; font-weight: 500;">View profile</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; overflow: hidden; flex-direction: column; flex: 1 1 0%; min-width: 0;">
+        <div style="@@media (min-width: 1024px) { display: none; }">
+            <div style="display: flex; padding-top: 0.375rem; padding-bottom: 0.375rem; padding-left: 1rem; padding-right: 1rem; background-color: #F9FAFB; justify-content: space-between; align-items: center; border-bottom-width: 1px; border-color: #E5E7EB;">
+                <div>
+                    <img style="width: auto; height: 2rem;" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                </div>
+                <div>
+                    <button type="button" style="display: inline-flex; margin-right: -0.75rem; color: #6B7280; justify-content: center; align-items: center; width: 3rem; height: 3rem; border-radius: 0.375rem; :hover { color: #111827; }">
+                        @*<span class="sr-only">Open sidebar</span>*@
+                        <svg style="width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; overflow: hidden; position: relative; z-index: 0; flex: 1 1 0%;">
+            <main style="overflow-y: auto; position: relative; z-index: 0; flex: 1 1 0%; @@media (min-width: 1280px) { order: 9999; }">
+                <!-- Main area -->
+            </main>
+            <aside style="display: none; overflow-y: auto; position: relative; flex-shrink: 0; width: 24rem; border-right-width: 1px; border-color: #E5E7EB; @@media (min-width: 1280px) { display: flex; flex-direction: column; order: -9999; }">
+                <!-- Secondary column (hidden on smaller screens) -->
+            </aside>
+        </div>
     </div>
 </div>
-
-<script>
-    const button = document.querySelector('button[aria-haspopup="listbox"]');
-    const listbox = document.querySelector('ul[role="listbox"]');
-    const options = listbox.querySelectorAll('li');
-    let selectedOption = null;
-
-    function toggleListbox() {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', !expanded);
-        listbox.style.opacity = expanded ? 0 : 1;
-        listbox.style.visibility = expanded ? 'hidden' : 'visible';
-    }
-
-    function setSelectedOption(option) {
-        if (selectedOption) {
-            selectedOption.classList.remove('bg-indigo-600', 'text-white');
-        }
-        option.classList.add('bg-indigo-600', 'text-white');
-        button.querySelector('span:first-child').textContent = option.querySelector('span:first-child').textContent;
-        selectedOption = option;
-    }
-
-    button.addEventListener('click', toggleListbox);
-
-    options.forEach(option => {
-        option.addEventListener('click', () => {
-            setSelectedOption(option);
-            toggleListbox();
-        });
-        option.addEventListener('mouseenter', () => {
-            option.classList.add('bg-gray-100');
-        });
-        option.addEventListener('mouseleave', () => {
-            option.classList.remove('bg-gray-100');
-        });
-        option.addEventListener('keydown', event => {
-            if (event.code === 'Space' || event.code === 'Enter') {
-                setSelectedOption(option);
-                toggleListbox();
-            }
-        });
-    });
-
-    listbox.addEventListener('keydown', event => {
-        if (event.code === 'Escape') {
-            toggleListbox();
-            button.focus();
-        } else if (event.code === 'ArrowUp') {
-            const index = Array.from(options).indexOf(selectedOption);
-            const prevIndex = index > 0 ? index - 1 : options.length - 1;
-            setSelectedOption(options[prevIndex]);
-            options[prevIndex].scrollIntoView({ block: 'nearest' });
-        } else if (event.code === 'ArrowDown') {
-            const index = Array.from(options).indexOf(selectedOption);
-            const nextIndex = index < options.length - 1 ? index + 1 : 0;
-            setSelectedOption(options[nextIndex]);
-            options[nextIndex].scrollIntoView({ block: 'nearest' });
-        }
-    });
-</script>
